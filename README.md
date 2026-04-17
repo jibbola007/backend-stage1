@@ -64,6 +64,20 @@ Example: `/api/profiles?gender=male&country_id=NG`
 ### DELETE /api/profiles/{id}
 Delete a profile by ID. Returns 204 No Content on success.
 
+## Database Setup
+
+This application uses PostgreSQL for data persistence. For deployment on Vercel, we recommend using Neon (free tier available).
+
+### Setting up Neon Database
+
+1. Go to [Neon Console](https://console.neon.tech/)
+2. Create a new project
+3. Copy the connection string from the dashboard
+4. In Vercel dashboard, go to your project settings
+5. Add environment variable: `DATABASE_URL` with your Neon connection string
+
+The application will automatically create the required tables on startup.
+
 ## Installation
 
 1. Clone the repository
@@ -71,16 +85,25 @@ Delete a profile by ID. Returns 204 No Content on success.
    ```bash
    npm install
    ```
-3. Start the server:
+3. Set up environment variable for database:
+   ```bash
+   export DATABASE_URL="your-postgresql-connection-string"
+   ```
+4. Start the server:
    ```bash
    npm start
    ```
 
-The server will run on port 3000 by default, or use the `PORT` environment variable.
+## Deployment on Vercel
 
-## Database
+1. Install Vercel CLI: `npm install -g vercel`
+2. Login: `vercel login`
+3. Deploy: `vercel --prod`
+4. Set up Neon database as described above
+5. In Vercel dashboard, add `DATABASE_URL` environment variable
+6. Redeploy if needed: `vercel --prod`
 
-Uses SQLite database (`profiles.db`) which is created automatically on first run.
+The application will be available at the provided Vercel URL.
 
 ## Error Handling
 
